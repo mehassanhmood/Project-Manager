@@ -18,11 +18,11 @@ const items = [
     url: "#",
     icon: Home,
   },
-  {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
+{
+  title: "Algorithms",
+  url: "/algorithms", // or "/algorithm/[id]" if you want dynamic routing
+  icon: Inbox,
+},
   {
     title: "Calendar",
     url: "#",
