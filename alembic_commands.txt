@@ -1,0 +1,9 @@
+Initializing Alembic:
+    poetry run alembic init alembic
+configure alembic:
+    1. alembic.ini: sqlalchemy.url = sqlite:///./buraq_manager.db
+    2. alembic/env.py:  target_metadata = Base.metadata (after importing `Base` from databse.py)
+First Migration:
+    poetry run alembic revision --autogenerate -m "Initial migration"
+Applying Migration:
+    poetry run alembic upgrade head

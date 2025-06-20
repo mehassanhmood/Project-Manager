@@ -1,0 +1,97 @@
+// here we will have apis for fetching, making, deleting, starting, and completing the task.
+
+import {Task, TaskCreate } from "../types";
+
+
+export class TaskApiService {
+
+    private baseUrl: string
+    constructor(baseUrl: string = 'http://localhost:8000/api/v1', pageName: string = "Home"){
+        this.baseUrl = `${baseUrl}/pages/${pageName}`
+    }
+
+    async fetchTasks(): Promise<Task[]> {
+        try {
+            const response = await fetch(`${this.baseUrl}/tasks`)
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`)
+            }
+            return await response.json();
+        } catch (error) {
+            console.error("Errorn fetching tasks:", error)
+            throw error
+        }
+    }
+
+
+    async createTask(taskData: TaskCreate): Promise<void> {
+        try {
+            const response = await fetch(`${this.baseUrl}/tasks`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(taskData)
+            })
+            if (!response.ok) {
+                const errorData = await response.json()
+                console.error("Server error:", errorData)
+                throw new Error(`Failed to make a new task: ${response.status}`)
+            }
+        } catch (error){
+            console.error("Error making the task: ", error)
+            throw error
+        }
+        
+    }
+
+
+    async startTask(taskId: number): Promise<void> {
+        try {
+        const response = await fetch(`${this.baseUrl}/tasks/${taskId}/start`, {
+            method: 'PUT',
+        })
+        
+        if (!response.ok) {
+            throw new Error(`Failed to start task: ${response.status}`)
+        }
+        } catch (error) {
+        console.error('Error starting task:', error)
+        throw error
+        }
+    }
+
+
+    async deleteTask(taskId: number): Promise<void> {
+        try {
+        const response = await fetch(`${this.baseUrl}/tasks/${taskId}/complete`, {
+            method: 'PUT',
+        })
+        
+        if (!response.ok) {
+            throw new Error(`Failed to complete task: ${response.status}`)
+        }
+        } catch (error) {
+        console.error('Error completing task:', error)
+        throw error
+        }
+    }
+
+
+    async completeTask(taskId: number): Promise<void> {
+        try {
+        const response = await fetch(`${this.baseUrl}/tasks/${taskId}`, {
+            method: 'DELETE',
+        })
+        
+        if (!response.ok) {
+            throw new Error(`Failed to delete task: ${response.status}`)
+        }
+        } catch (error) {
+        console.error('Error deleting task:', error)
+        throw error
+        }
+    }
+
+
+}

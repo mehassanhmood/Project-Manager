@@ -1,0 +1,3 @@
+database/
+alembic/
+frontend/node_modules/
