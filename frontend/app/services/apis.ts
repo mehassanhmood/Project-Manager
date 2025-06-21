@@ -1,6 +1,6 @@
 // here we will have apis for fetching, making, deleting, starting, and completing the task.
 
-import {Task, TaskCreate } from "../types";
+import {Task, TaskCreate, Subtask, SubtaskCreate, SubtaskUpdate } from "../types";
 
 
 export class TaskApiService {
@@ -18,7 +18,7 @@ export class TaskApiService {
             }
             return await response.json();
         } catch (error) {
-            console.error("Errorn fetching tasks:", error)
+            console.error("Error fetching tasks:", error)
             throw error
         }
     }
@@ -62,7 +62,7 @@ export class TaskApiService {
     }
 
 
-    async deleteTask(taskId: number): Promise<void> {
+    async completeTask(taskId: number): Promise<void> {
         try {
         const response = await fetch(`${this.baseUrl}/tasks/${taskId}/complete`, {
             method: 'PUT',
@@ -78,7 +78,7 @@ export class TaskApiService {
     }
 
 
-    async completeTask(taskId: number): Promise<void> {
+    async deleteTask(taskId: number): Promise<void> {
         try {
         const response = await fetch(`${this.baseUrl}/tasks/${taskId}`, {
             method: 'DELETE',
@@ -93,5 +93,56 @@ export class TaskApiService {
         }
     }
 
+    // Subtask API methods
+    async createSubtask(taskId: number, subtask: SubtaskCreate): Promise<Subtask> {
+        try {
+            const response = await fetch(`${this.baseUrl.replace('/pages/' + this.baseUrl.split('/').pop(), '')}/tasks/${taskId}/subtasks`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(subtask)
+            })
+            if (!response.ok) {
+                throw new Error(`Failed to create subtask: ${response.status}`)
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Error creating subtask:', error)
+            throw error
+        }
+    }
 
+    async updateSubtaskStatus(subtaskId: number, status: string): Promise<Subtask> {
+        try {
+            const response = await fetch(`${this.baseUrl.replace('/pages/' + this.baseUrl.split('/').pop(), '')}/subtasks/${subtaskId}/status`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status })
+            })
+            if (!response.ok) {
+                throw new Error(`Failed to update subtask status: ${response.status}`)
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Error updating subtask status:', error)
+            throw error
+        }
+    }
+
+    async deleteSubtask(subtaskId: number): Promise<void> {
+        try {
+            const response = await fetch(`${this.baseUrl.replace('/pages/' + this.baseUrl.split('/').pop(), '')}/subtasks/${subtaskId}`, {
+                method: 'DELETE',
+            })
+            if (!response.ok) {
+                throw new Error(`Failed to delete subtask: ${response.status}`)
+            }
+        } catch (error) {
+            console.error('Error deleting subtask:', error)
+            throw error
+        }
+    }
 }

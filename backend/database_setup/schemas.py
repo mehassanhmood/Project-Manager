@@ -26,6 +26,10 @@ class SubtaskResponse(BaseModel):
     title: str
     description: Optional[str]
     status: SubtaskStatus
+    created_at: datetime
+    started_at: Optional[datetime]
+    completed_at: Optional[datetime]
+    updated_at: datetime
 
     class Config:
         from_attributes = True
@@ -33,6 +37,10 @@ class SubtaskResponse(BaseModel):
 class Subtask(SubtaskBase):
     id: int
     task_id: int
+    created_at: datetime
+    started_at: Optional[datetime]
+    completed_at: Optional[datetime]
+    updated_at: datetime
 
     class Config:
         from_attributes = True

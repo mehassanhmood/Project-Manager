@@ -57,7 +57,12 @@ class Subtask(Base):
     title = Column(String, nullable=False)
     description = Column(Text)
     status = Column(Enum(SubtaskStatus), nullable=False, default=SubtaskStatus.pending)
+    # I have not deleted this although it is suggested that i do.
     task = relationship("Task", back_populates="subtasks")
+    created_at = Column(DateTime, default=datetime.utcnow)
+    started_at = Column(DateTime)
+    completed_at = Column(DateTime)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     __table_args__ = (
         Index("idx_subtask_status", "status"),

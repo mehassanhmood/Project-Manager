@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Task, TaskCreate } from '../types'
+import { Task, TaskCreate, SubtaskCreate } from '../types'
 import { TaskApiService } from '../services/apis'
 
 interface UseTaskManagerProps {
@@ -85,6 +85,64 @@ export function useTaskManager({ pageName, baseUrl }: UseTaskManagerProps) {
     }
   }
 
+  // Subtask management functions
+  const addSubtask = async (taskId: number, subtask: SubtaskCreate) => {
+    try {
+      setIsProcessing(true)
+      setError(null)
+      const newSubtask = await apiService.createSubtask(taskId, subtask)
+      // Update the task's subtasks list
+      setTasks(tasks.map(task => 
+        task.id === taskId 
+          ? { ...task, subtasks: [...task.subtasks, newSubtask] }
+          : task
+      ))
+    } catch (error) {
+      setError('Failed to add subtask')
+      console.error('Error adding subtask:', error)
+    } finally {
+      setIsProcessing(false)
+    }
+  }
+
+  const updateSubtaskStatus = async (subtaskId: number, status: string) => {
+    try {
+      setIsProcessing(true)
+      setError(null)
+      const updatedSubtask = await apiService.updateSubtaskStatus(subtaskId, status)
+      // Update the subtask in the appropriate task
+      setTasks(tasks.map(task => ({
+        ...task,
+        subtasks: task.subtasks.map(subtask =>
+          subtask.id === subtaskId ? updatedSubtask : subtask
+        )
+      })))
+    } catch (error) {
+      setError('Failed to update subtask status')
+      console.error('Error updating subtask status:', error)
+    } finally {
+      setIsProcessing(false)
+    }
+  }
+
+  const deleteSubtask = async (subtaskId: number) => {
+    try {
+      setIsProcessing(true)
+      setError(null)
+      await apiService.deleteSubtask(subtaskId)
+      // Remove the subtask from the appropriate task
+      setTasks(tasks.map(task => ({
+        ...task,
+        subtasks: task.subtasks.filter(subtask => subtask.id !== subtaskId)
+      })))
+    } catch (error) {
+      setError('Failed to delete subtask')
+      console.error('Error deleting subtask:', error)
+    } finally {
+      setIsProcessing(false)
+    }
+  }
+
   const refreshTasks = () => {
     setLoading(true)
     fetchTasks()
@@ -104,6 +162,9 @@ export function useTaskManager({ pageName, baseUrl }: UseTaskManagerProps) {
     startTask,
     completeTask,
     deleteTask,
+    addSubtask,
+    updateSubtaskStatus,
+    deleteSubtask,
     refreshTasks
   }
 }

@@ -1,9 +1,13 @@
-
 export interface Subtask {
   id: number
   title: string
   description: string | null
-  status: string
+  status: 'Pending' | 'In progress' | 'Completed'
+  task_id: number
+  created_at: string
+  started_at: string | null
+  completed_at: string | null
+  updated_at: string
 }
 
 export interface Task {
@@ -20,6 +24,12 @@ export interface Task {
 
 export interface SubtaskCreate {
   title: string
+  description?: string
+}
+
+export interface SubtaskUpdate {
+  status?: 'Pending' | 'In progress' | 'Completed'
+  title?: string
   description?: string
 }
 

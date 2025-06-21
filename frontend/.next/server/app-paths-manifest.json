@@ -1,6 +1,5 @@
 {
+  "/machineLearning/page": "app/machineLearning/page.js",
   "/page": "app/page.js",
-  "/frontEnd/page": "app/frontEnd/page.js",
-  "/algorithms/page": "app/algorithms/page.js",
-  "/broker/page": "app/broker/page.js"
+  "/algorithms/page": "app/algorithms/page.js"
 }
