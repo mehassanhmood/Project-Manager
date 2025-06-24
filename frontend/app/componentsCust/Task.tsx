@@ -40,25 +40,25 @@ export default function Task({
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-64">
+      <div className="flex items-center justify-center min-h-fib-233">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-primary mx-auto mb-3"></div>
-          <div className="text-sm text-muted-foreground">Loading your tasks...</div>
+          <div className="animate-spin rounded-full h-fib-34 w-fib-34 border-b-2 border-primary mx-auto mb-fib-13"></div>
+          <div className="text-fib-sm text-muted-foreground">Loading your tasks...</div>
         </div>
       </div>
     )
   }
 
   return (
-    <div className={`max-w-4xl mx-auto px-4 py-6 ${className}`}>
+    <div className={`max-w-golden-lg mx-auto px-fib-21 py-fib-34 ${className}`}>
       {/* Simple Header */}
-      <div className="mb-6">
+      <div className="mb-fib-34">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-semibold text-foreground">{title}</h1>
+          <h1 className="text-fib-lg font-semibold text-foreground">{title}</h1>
           {!showCreateForm && (
             <button
               onClick={refreshTasks}
-              className="px-3 py-1.5 bg-primary text-primary-foreground rounded text-sm hover:bg-primary/90 transition-smooth focus-ring"
+              className="px-fib-13 py-fib-8 bg-primary text-primary-foreground rounded-fib-md text-fib-sm hover:bg-primary/90 transition-smooth focus-ring"
               disabled={loading}
             >
               Refresh
@@ -69,17 +69,17 @@ export default function Task({
 
       {/* Error Display */}
       {error && (
-        <div className="mb-4 p-3 rounded-lg bg-destructive/10 border border-destructive/20">
-          <div className="flex items-center space-x-2">
-            <AlertCircle className="h-4 w-4 text-destructive flex-shrink-0" />
-            <div className="text-sm text-destructive font-medium">{error}</div>
+        <div className="mb-fib-21 p-fib-13 rounded-fib-lg bg-destructive/10 border border-destructive/20">
+          <div className="flex items-center space-x-fib-8">
+            <AlertCircle className="h-fib-21 w-fib-21 text-destructive flex-shrink-0" />
+            <div className="text-fib-sm text-destructive font-medium">{error}</div>
           </div>
         </div>
       )}
       
       {/* Task Form */}
       {showCreateForm && (
-        <div className="mb-6">
+        <div className="mb-fib-34">
           <TaskForm onCreateTask={createTask} isSubmitting={isSubmitting} />
         </div>
       )}

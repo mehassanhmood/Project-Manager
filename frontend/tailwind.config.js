@@ -8,10 +8,67 @@ module.exports = {
   ],
   theme: {
   	extend: {
+  		// Fibonacci-based spacing scale (in pixels)
+  		spacing: {
+  			'fib-1': '1px',
+  			'fib-2': '2px',
+  			'fib-3': '3px',
+  			'fib-5': '5px',
+  			'fib-8': '8px',
+  			'fib-13': '13px',
+  			'fib-21': '21px',
+  			'fib-34': '34px',
+  			'fib-55': '55px',
+  			'fib-89': '89px',
+  			'fib-144': '144px',
+  			'fib-233': '233px',
+  		},
+  		// Fibonacci-based font sizes
+  		fontSize: {
+  			'fib-xs': ['8px', { lineHeight: '13px' }],
+  			'fib-sm': ['13px', { lineHeight: '21px' }],
+  			'fib-base': ['21px', { lineHeight: '34px' }],
+  			'fib-lg': ['34px', { lineHeight: '55px' }],
+  			'fib-xl': ['55px', { lineHeight: '89px' }],
+  			'fib-2xl': ['89px', { lineHeight: '144px' }],
+  		},
+  		// Fibonacci-based border radius
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
+  			sm: 'calc(var(--radius) - 4px)',
+  			'fib-sm': '3px',
+  			'fib-md': '5px',
+  			'fib-lg': '8px',
+  			'fib-xl': '13px',
+  			'fib-2xl': '21px',
+  			'fib-3xl': '34px',
+  		},
+  		// Fibonacci-based widths and heights
+  		width: {
+  			'fib-21': '21px',
+  			'fib-34': '34px',
+  			'fib-55': '55px',
+  			'fib-89': '89px',
+  			'fib-144': '144px',
+  			'fib-233': '233px',
+  			'fib-377': '377px',
+  		},
+  		height: {
+  			'fib-21': '21px',
+  			'fib-34': '34px',
+  			'fib-55': '55px',
+  			'fib-89': '89px',
+  			'fib-144': '144px',
+  			'fib-233': '233px',
+  			'fib-377': '377px',
+  		},
+  		// Golden ratio based max-widths
+  		maxWidth: {
+  			'golden-sm': '377px', // 233 * 1.618
+  			'golden-md': '610px', // 377 * 1.618
+  			'golden-lg': '987px', // 610 * 1.618
+  			'golden-xl': '1597px', // 987 * 1.618
   		},
   		colors: {
   			background: 'hsl(var(--background))',

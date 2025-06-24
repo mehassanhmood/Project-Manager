@@ -113,32 +113,32 @@ export function AppSidebar({children}: MyComponent) {
         />
       )}
 
-      {/* Sidebar */}
+      {/* Sidebar - Using Fibonacci width (233px) */}
       <div className={`
-        fixed md:static inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 transform transition-transform duration-200 ease-in-out
+        fixed md:static inset-y-0 left-0 z-50 w-fib-233 bg-white border-r border-gray-200 transform transition-transform duration-200 ease-in-out
         ${sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
       `}>
         {/* Logo/Brand Section */}
-        <div className="p-4 border-b border-gray-200">
-          <h2 className="text-lg font-bold text-foreground">Buraq Manager</h2>
+        <div className="p-fib-21 border-b border-gray-200">
+          <h2 className="text-fib-base font-bold text-foreground">Buraq Manager</h2>
         </div>
         
         {/* Navigation Groups */}
         <div className="overflow-y-auto h-full">
           {Object.entries(groupedItems).map(([category, categoryItems]) => (
-            <div key={category} className="py-2">
-              <div className="px-4 py-2 text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <div key={category} className="py-fib-8">
+              <div className="px-fib-21 py-fib-8 text-fib-xs font-medium text-gray-500 uppercase tracking-wider">
                 {categoryLabels[category as keyof typeof categoryLabels]}
               </div>
-              <div className="space-y-1">
+              <div className="space-y-fib-3">
                 {categoryItems.map((item) => (
                   <a
                     key={item.title}
                     href={item.url}
-                    className="flex items-center space-x-3 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
+                    className="flex items-center space-x-fib-13 px-fib-21 py-fib-8 text-fib-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
                     onClick={() => setSidebarOpen(false)}
                   >
-                    <item.icon className="h-4 w-4" />
+                    <item.icon className="h-fib-21 w-fib-21" />
                     <span>{item.title}</span>
                   </a>
                 ))}
@@ -150,10 +150,10 @@ export function AppSidebar({children}: MyComponent) {
 
       {/* Mobile Menu Button */}
       <button
-        className="fixed top-4 left-4 z-50 p-2 bg-white border border-gray-200 rounded-md md:hidden"
+        className="fixed top-fib-21 left-fib-21 z-50 p-fib-8 bg-white border border-gray-200 rounded-fib-md md:hidden"
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
-        <Menu className="h-5 w-5" />
+        <Menu className="h-fib-34 w-fib-34" />
       </button>
 
       {/* Main Content */}

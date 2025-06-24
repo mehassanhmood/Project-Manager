@@ -60,6 +60,14 @@ def get_all_tasks(db: Session = Depends(get_db)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error fetching tasks: {str(e)}")
 
+@router.get("/tasks/all", response_model=List[schemas.TaskResponse])
+def get_all_tasks_from_all_pages(db: Session = Depends(get_db)):
+    try:
+        tasks = crud.get_tasks(db)
+        return tasks
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching all tasks: {str(e)}")
+
 @router.put("/pages/{page_name}/tasks/{task_id}/start", response_model=schemas.TaskResponse)
 def start_task(page_name: str, task_id: int, db: Session = Depends(get_db)):
     try:

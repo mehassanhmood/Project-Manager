@@ -31,41 +31,41 @@ export default function AddSubtaskForm({ taskId, onAddSubtask, isSubmitting = fa
   }
 
   return (
-    <div className="p-3 rounded border border-dashed border-primary/30 bg-primary/5">
-      <form onSubmit={handleSubmit} className="space-y-3">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-          <div className="space-y-1">
-            <label className="text-xs font-medium text-foreground">Subtask Title</label>
+    <div className="p-fib-13 rounded-fib-md border border-dashed border-primary/30 bg-primary/5">
+      <form onSubmit={handleSubmit} className="space-y-fib-13">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-fib-8">
+          <div className="space-y-fib-3">
+            <label className="text-fib-xs font-medium text-foreground">Subtask Title</label>
             <input
               type="text"
               placeholder="Enter subtask title..."
               value={subtask.title}
               onChange={(e) => setSubtask({ ...subtask, title: e.target.value })}
-              className="w-full px-2 py-1.5 rounded border border-gray-300 bg-background text-foreground placeholder:text-muted-foreground focus-ring transition-smooth text-sm"
+              className="w-full px-fib-8 py-fib-8 rounded-fib-md border border-gray-300 bg-background text-foreground placeholder:text-muted-foreground focus-ring transition-smooth text-fib-sm"
               required
               disabled={isSubmitting}
             />
           </div>
-          <div className="space-y-1">
-            <label className="text-xs font-medium text-foreground">Description (Optional)</label>
+          <div className="space-y-fib-3">
+            <label className="text-fib-xs font-medium text-foreground">Description (Optional)</label>
             <input
               type="text"
               placeholder="Enter description..."
               value={subtask.description}
               onChange={(e) => setSubtask({ ...subtask, description: e.target.value })}
-              className="w-full px-2 py-1.5 rounded border border-gray-300 bg-background text-foreground placeholder:text-muted-foreground focus-ring transition-smooth text-sm"
+              className="w-full px-fib-8 py-fib-8 rounded-fib-md border border-gray-300 bg-background text-foreground placeholder:text-muted-foreground focus-ring transition-smooth text-fib-sm"
               disabled={isSubmitting}
             />
           </div>
         </div>
         
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-fib-8">
           <button
             type="submit"
-            className="flex items-center gap-1 px-2 py-1 bg-primary text-primary-foreground rounded text-xs hover:bg-primary/90 transition-smooth disabled:opacity-50"
+            className="flex items-center gap-fib-3 px-fib-8 py-fib-3 bg-primary text-primary-foreground rounded-fib-md text-fib-xs hover:bg-primary/90 transition-smooth disabled:opacity-50"
             disabled={isSubmitting || !subtask.title.trim()}
           >
-            <Plus className="h-3 w-3" />
+            <Plus className="h-fib-13 w-fib-13" />
             <span className="font-medium">
               {isSubmitting ? 'Adding...' : 'Add Subtask'}
             </span>
@@ -74,10 +74,10 @@ export default function AddSubtaskForm({ taskId, onAddSubtask, isSubmitting = fa
           <button
             type="button"
             onClick={() => setSubtask({ title: '', description: '' })}
-            className="flex items-center gap-1 px-2 py-1 bg-muted text-muted-foreground rounded text-xs hover:bg-muted/80 transition-smooth disabled:opacity-50"
+            className="flex items-center gap-fib-3 px-fib-8 py-fib-3 bg-muted text-muted-foreground rounded-fib-md text-fib-xs hover:bg-muted/80 transition-smooth disabled:opacity-50"
             disabled={isSubmitting}
           >
-            <X className="h-3 w-3" />
+            <X className="h-fib-13 w-fib-13" />
             <span className="font-medium">Clear</span>
           </button>
         </div>

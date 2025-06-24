@@ -148,6 +148,21 @@ export function useTaskManager({ pageName, baseUrl }: UseTaskManagerProps) {
     fetchTasks()
   }
 
+  const fetchAllTasksForAnalytics = async () => {
+    try {
+      setError(null)
+      setLoading(true)
+      const apiService = new TaskApiService(baseUrl, pageName)
+      const data = await apiService.fetchAllTasks()
+      setTasks(data)
+    } catch (error) {
+      setError('Failed to fetch all tasks for analytics')
+      console.error('Error fetching all tasks:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
     fetchTasks()
   }, [pageName])
@@ -165,6 +180,7 @@ export function useTaskManager({ pageName, baseUrl }: UseTaskManagerProps) {
     addSubtask,
     updateSubtaskStatus,
     deleteSubtask,
-    refreshTasks
+    refreshTasks,
+    fetchAllTasksForAnalytics
   }
 }

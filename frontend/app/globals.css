@@ -56,7 +56,8 @@
     --chart-4: 142 76% 36%; /* Emerald Green */
     --chart-5: 0 84% 60%; /* Red */
     
-    --radius: 0.5rem;
+    /* Fibonacci-based border radius */
+    --radius: 8px; /* Fibonacci number */
     
     /* Sidebar colors - keeping original structure */
     --sidebar-background: 0 0% 98%;
@@ -113,7 +114,7 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    font-size: 14px; /* Smaller base font size */
+    font-size: 13px; /* Fibonacci-based base font size */
   }
   
   /* Smooth scrolling */
@@ -121,9 +122,9 @@
     scroll-behavior: smooth;
   }
   
-  /* Custom scrollbar */
+  /* Custom scrollbar with Fibonacci sizing */
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 8px; /* Fibonacci number */
   }
   
   ::-webkit-scrollbar-track {
@@ -131,7 +132,7 @@
   }
   
   ::-webkit-scrollbar-thumb {
-    @apply bg-muted-foreground/20 rounded-full;
+    @apply bg-muted-foreground/20 rounded-fib-lg;
   }
   
   ::-webkit-scrollbar-thumb:hover {
@@ -171,5 +172,34 @@
   /* Focus states */
   .focus-ring {
     @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+  
+  /* Fibonacci-based layout utilities */
+  .fib-container {
+    @apply max-w-golden-lg mx-auto px-fib-21;
+  }
+  
+  .fib-section {
+    @apply py-fib-34;
+  }
+  
+  .fib-card {
+    @apply p-fib-21 rounded-fib-lg shadow-sm border border-gray-200;
+  }
+  
+  .fib-button {
+    @apply px-fib-13 py-fib-8 rounded-fib-md transition-smooth;
+  }
+  
+  .fib-input {
+    @apply px-fib-13 py-fib-8 rounded-fib-md border border-gray-200;
+  }
+  
+  .fib-spacing {
+    @apply space-y-fib-13;
+  }
+  
+  .fib-margin {
+    @apply mb-fib-21;
   }
 }

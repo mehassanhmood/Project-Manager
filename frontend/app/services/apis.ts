@@ -23,6 +23,21 @@ export class TaskApiService {
         }
     }
 
+    async fetchAllTasks(): Promise<Task[]> {
+        try {
+            // Use the new endpoint that gets all tasks from all pages
+            const baseUrl = this.baseUrl.split('/pages/')[0]; // Get http://localhost:8000/api/v1
+            const response = await fetch(`${baseUrl}/tasks/all`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const tasks = await response.json();
+            return tasks;
+        } catch (error) {
+            console.error("Error fetching all tasks:", error)
+            throw error
+        }
+    }
 
     async createTask(taskData: TaskCreate): Promise<void> {
         try {
